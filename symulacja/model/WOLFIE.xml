@@ -1,0 +1,171 @@
+<mujoco model="WOLFIE">
+    <compiler inertiafromgeom='auto' angle='radian' eulerseq='zyx' meshdir='wolfie-stl-meshes'/>
+    <size njmax="500" nconmax="100" />
+
+    <visual>
+        <rgba haze="0.15 0.25 0.35 1"/>
+        <quality shadowsize="2048"/>
+        <map stiffness="700" shadowscale="0.5" fogstart="10" fogend="15" zfar="40" haze="0.3"/>
+    </visual>
+
+    <default>
+        <joint limited='true'/>
+        <motor ctrllimited='true'/>
+        <geom contype='0' conaffinity='0' condim='1' solref='0.005 1'/>
+        <equality solref='0.005 1'/>
+        <default class='wolfie'>
+            <geom material='wolfie'/>
+        </default>
+        <default class='collision'>
+      <!-- each part can collide with the rest but not with parts within the leg it belongs to -->
+            <geom material='collision' contype='1' user='2'/>
+            <default class='collision-LF'>
+                <geom contype='2' conaffinity='12'/>
+            </default>
+            <default class='collision-RF'>
+                <geom contype='4' conaffinity='10'/>
+            </default>
+            <default class='collision-LB'>
+                <geom contype='8' conaffinity='6'/>
+            </default>
+            <default class='collision-RB'>
+                <geom contype='16' conaffinity='14'/>
+            </default>
+        </default>
+    </default>
+
+    <asset>
+        <material name='wolfie'    rgba='0.9 0.5 0.1 1'/>
+        <material name='collision' rgba='0.1 0.5 0.9 0'/>
+        <mesh name="TORSO" file="TORSO.STL" />
+        <mesh name="LF_hip" file="LF_hip.STL" />
+        <mesh name="LF_thigh" file="LF_thigh.STL" />
+        <mesh name="LF_tibia" file="LF_tibia.STL" />
+        <mesh name="RF_hip" file="RF_hip.STL" />
+        <mesh name="RF_thigh" file="RF_thigh.STL" />
+        <mesh name="RF_tibia" file="RF_tibia.STL" />
+        <mesh name="LB_hip" file="LB_hip.STL" />
+        <mesh name="LB_thigh" file="LB_thigh.STL" />
+        <mesh name="LB_tibia" file="LB_tibia.STL" />
+        <mesh name="RB_hip" file="RB_hip.STL" />
+        <mesh name="RB_thigh" file="RB_thigh.STL" />
+        <mesh name="RB_tibia" file="RB_tibia.STL" />
+
+        <texture name="texplane" type="2d" builtin="checker" rgb1=".2 .3 .4" rgb2=".1 0.15 0.2"
+            width="512" height="512" mark="cross" markrgb=".8 .8 .8"/>
+        <material name="matplane" reflectance="0.3" texture="texplane" texrepeat="1 1" texuniform="true"/>
+
+    </asset>
+    <worldbody>
+        <light directional="true" diffuse=".4 .4 .4" specular="0.1 0.1 0.1" pos="0 0 5.0" dir="0 0 -1" castshadow="false"/>
+        <light directional="true" diffuse=".6 .6 .6" specular="0.2 0.2 0.2" pos="0 0 4" dir="0 0 -1"/>
+        <!-- collision for the floor: affinity = 0001 1111 co that it can collide with all robot parts  -->
+        <geom name="ground" type="plane" size="0 0 1" pos="0 0 -0.3" quat="1 0 0 0" material="matplane" condim="3" conaffinity="31"/>
+
+        <body name='TORSO' pos='0 0 0.22' childclass='wolfie'>
+            <geom type="mesh" rgba="0.4 0.4 0.4 1" mesh="TORSO" class = "collision"/>
+            <joint type='slide' axis='1 0 0' limited='false'/>
+            <joint type='slide' axis='0 1 0' limited='false'/>
+            <joint type='slide' axis='0 0 1' limited='false' ref='1.01'/>
+            <joint type='ball' limited='false'/>
+            <site name='imu' size='0.01' pos='0 0 0' rgba="0 1 0 1"/>
+            <body name="LF_hip" pos="0.1097 0.04497 -0.0016489" quat="0.490752 -0.509078 -0.490756 0.509078" >
+                <inertial pos="-0.0117703 -1.87278e-05 0.000144832" quat="0.99995 0.00997599 -0.000222812 8.35547e-05" mass="0.235842" diaginertia="7.28685e-05 3.98751e-05 3.89065e-05" />
+                <joint name="LF_hip" pos="0 0 0" axis="0 0 -1" limited="true" range="-1.57 1.57" damping='0.01' armature='0.01225'/>
+                <geom type="mesh" rgba="0.4 0.4 0.4 1" mesh="LF_hip" class = "collision-LF"/>
+                <body name="LF_thigh" pos="0.04495 0 0" quat="0.499998 0.5 0.500002 0.5">
+                    <inertial pos="0.0109124 0.000711115 -0.0154662" quat="-0.000178982 0.706485 -5.7639e-05 0.707728" mass="0.312295" diaginertia="0.00022394 0.000178216 5.1589e-05" />
+                    <joint name="LF_thigh" pos="0.0017 0 0" axis="0 0 1" limited="true" range="-1.57 1.57" damping='0.01' armature='0.01225'/>
+                    <geom type="mesh" rgba="0.4 0.4 0.4 1" mesh="LF_thigh" class = "collision-LF" />
+                    <body name="LF_tibia" pos="0.1 0 0">
+                        <inertial pos="0.0452059 0.0007 0.000381359" quat="0 0.708048 0 0.706165" mass="0.0383078" diaginertia="2.14046e-05 2.06781e-05 1.43699e-06" />
+                        <joint name="LF_tibia" pos="0.0015 0.0007 0" axis="0 0 1" limited="true" range="-2.6 2.6" damping='0.01' armature='0.01225'/>
+                        <geom type="mesh" rgba="1 0.1 0.1 1" mesh="LF_tibia"  class = "collision-LF"/>
+                    </body>
+                </body>
+            </body>
+            <body name="RF_hip" pos="0.1097 -0.04497 0.0016489" quat="0.490752 -0.509078 0.490756 -0.509078">
+                <inertial pos="-0.0117703 1.87278e-05 -0.000144832" quat="0.99995 0.00997599 0.000222812 -8.35547e-05" mass="0.235842" diaginertia="7.28685e-05 3.98751e-05 3.89065e-05" />
+                <joint name="RF_hip" pos="0 0 0" axis="0 0 1" limited="true" range="-1.57 1.57" damping='0.01' armature='0.01225'/>
+                <geom type="mesh" rgba="0.4 0.4 0.4 1" mesh="RF_hip" class = "collision-RF"/>
+                <body name="RF_thigh" pos="0.04495 0 0" quat="0.499998 0.5 0.500002 0.5">
+                    <inertial pos="0.0109124 -0.000688885 -0.0154662" quat="-0.000178982 0.706485 -5.7639e-05 0.707728" mass="0.312295" diaginertia="0.00022394 0.000178216 5.1589e-05" />
+                    <joint name="RF_thigh" pos="-0.0017 0 0" axis="0 0 1" limited="true" range="-1.57 1.57" damping='0.01' armature='0.01225'/>
+                    <geom type="mesh" rgba="0.4 0.4 0.4 1" mesh="RF_thigh" class = "collision-RF"/>
+                    <body name="RF_tibia" pos="0.1 0 0">
+                        <inertial pos="0.0452059 -0.0007 0.000381359" quat="0 0.708048 0 0.706165" mass="0.0383078" diaginertia="2.14046e-05 2.06781e-05 1.43699e-06" />
+                        <joint name="RF_tibia" pos="0.0015 -0.0007 0" axis="0 0 1" limited="true" range="-2.6 2.6" damping='0.01' armature='0.01225'/>
+                        <geom type="mesh" rgba="0.4 0.4 0.4 1" mesh="RF_tibia" class = "collision-RF"/>
+                    </body>
+                </body>
+            </body>
+            <body name="LB_hip" pos="-0.11226 0.04497 -0.0016489" quat="0.490752 -0.509078 -0.490756 0.509078">
+                <inertial pos="-0.0117703 1.87278e-05 -0.00270034" quat="0.99995 0.00997599 0.000222812 -8.35547e-05" mass="0.235842" diaginertia="7.28685e-05 3.98751e-05 3.89065e-05" />
+                <joint name="LB_hip" pos="0 0 0" axis="0 0 1" limited="true" range="-1.57 1.57" damping='0.01' armature='0.01225'/>
+                <geom type="mesh" rgba="0.4 0.4 0.4 1" mesh="LB_hip" class = "collision-LB"/>
+                <body name="LB_thigh" pos="0.04495 0 4.4496e-05" quat="0.499998 0.5 0.500002 0.5">
+                    <inertial pos="0.0109124 -0.00328889 -0.0154662" quat="-0.000178982 0.706485 -5.7639e-05 0.707728" mass="0.312295" diaginertia="0.00022394 0.000178216 5.1589e-05" />
+                    <joint name="LB_thigh" pos="0 -0.0023 0" axis="0 0 1" limited="true" range="-1.57 1.57" damping='0.01' armature='0.01225'/>
+                    <geom type="mesh" rgba="0.4 0.4 0.4 1" mesh="LB_thigh" class = "collision-LB"/>
+                    <body name="LB_tibia" pos="0.1 0 0">
+                        <inertial pos="0.0452059 -0.0033 0.000381359" quat="0 0.708048 0 0.706165" mass="0.0383078" diaginertia="2.14046e-05 2.06781e-05 1.43699e-06" />
+                        <joint name="LB_tibia" pos="0.0015 -0.0032  0" axis="0 0 1" limited="true" range="-2.6 2.6" damping='0.01' armature='0.01225'/>
+                        <geom type="mesh" rgba="0.4 0.4 0.4 1" mesh="LB_tibia" class = "collision-LB"/>
+                    </body>
+                </body>
+            </body>
+            <body name="RB_hip" pos="-0.11226 -0.04497 0.0016489" quat="0.490752 -0.509078 0.490756 -0.509078">
+                <inertial pos="-0.0117703 1.87278e-05 -0.000144832" quat="0.99995 0.0099785 0.000224339 7.88313e-05" mass="0.235842" diaginertia="7.28685e-05 3.98751e-05 3.89065e-05" />
+                <joint name="RB_hip" pos="0 0 0" axis="0 0 -1" limited="true" range="-1.57 1.57" damping='0.01' armature='0.01225'/>
+                <geom type="mesh" rgba="0.4 0.4 0.4 1" mesh="RB_hip" class = "collision-RB"/>
+                <body name="RB_thigh" pos="0.04495 0 -4.4496e-05" quat="0.499998 0.5 0.500002 0.5">
+                    <inertial pos="0.0109124 0.00331111 -0.0154662" quat="-0.000178982 0.706485 -5.7639e-05 0.707728" mass="0.312295" diaginertia="0.00022394 0.000178216 5.1589e-05" />
+                    <joint name="RB_thigh" pos="0 0.0023 0" axis="0 0 1" limited="true" range="-1.57 1.57" damping='0.01' armature='0.01225'/>
+                    <geom type="mesh" rgba="0.4 0.4 0.4 1" mesh="RB_thigh" class = "collision-RB"/>
+                    <body name="RB_tibia" pos="0.1 0 0">
+                        <inertial pos="0.0452059 0.0033 0.000381359" quat="0 0.708048 0 0.706165" mass="0.0383078" diaginertia="2.14046e-05 2.06781e-05 1.43699e-06" />
+                        <joint name="RB_tibia" pos="0.0015 0.0032 0" axis="0 0 1" limited="true" range="-2.6 2.6" damping='0.01' armature='0.01225'/>
+                        <geom type="mesh" rgba="0.4 0.4 0.4 1" mesh="RB_tibia" class = "collision-RB"/>
+                    </body>
+                </body>
+            </body>
+        </body>
+    </worldbody>
+
+    <actuator>
+        <!-- User parameter is the maximum no-load motor RPM -->                                                                                 
+        <motor name='LF_hip'     joint='LF_hip'    gear='4.5' ctrllimited='true' ctrlrange='-3.0 3.0' forcelimited='true' forcerange='-3.0 3.0'/>
+        <motor name='LF_thigh'   joint='LF_thigh'  gear='4.5' ctrllimited='true' ctrlrange='-3.0 3.0' forcelimited='true' forcerange='-3.0 3.0'/>
+        <motor name='LF_tibia'   joint='LF_tibia'  gear='4.5' ctrllimited='true' ctrlrange='-3.0 3.0' forcelimited='true' forcerange='-3.0 3.0'/>
+        <motor name='RF_hip'     joint='RF_hip'    gear='4.5' ctrllimited='true' ctrlrange='-3.0 3.0' forcelimited='true' forcerange='-3.0 3.0'/>
+        <motor name='RF_thigh'   joint='RF_thigh'  gear='4.5' ctrllimited='true' ctrlrange='-3.0 3.0' forcelimited='true' forcerange='-3.0 3.0'/>
+        <motor name='RF_tibia'   joint='RF_tibia'  gear='4.5' ctrllimited='true' ctrlrange='-3.0 3.0' forcelimited='true' forcerange='-3.0 3.0'/>
+        <motor name='LB_hip'     joint='LB_hip'    gear='4.5' ctrllimited='true' ctrlrange='-3.0 3.0' forcelimited='true' forcerange='-3.0 3.0'/>
+        <motor name='LB_thigh'   joint='LB_thigh'  gear='4.5' ctrllimited='true' ctrlrange='-3.0 3.0' forcelimited='true' forcerange='-3.0 3.0'/>
+        <motor name='LB_tibia'   joint='LB_tibia'  gear='4.5' ctrllimited='true' ctrlrange='-3.0 3.0' forcelimited='true' forcerange='-3.0 3.0'/>
+        <motor name='RB_hip'     joint='RB_hip'    gear='4.5' ctrllimited='true' ctrlrange='-3.0 3.0' forcelimited='true' forcerange='-3.0 3.0'/>
+        <motor name='RB_thigh'   joint='RB_thigh'  gear='4.5' ctrllimited='true' ctrlrange='-3.0 3.0' forcelimited='true' forcerange='-3.0 3.0'/>
+        <motor name='RB_tibia'   joint='RB_tibia'  gear='4.5' ctrllimited='true' ctrlrange='-3.0 3.0' forcelimited='true' forcerange='-3.0 3.0'/>
+    </actuator>
+
+    <sensor>
+        <actuatorpos name='LF_hip_in'     actuator='LF_hip'    user='12' /> 
+        <actuatorpos name='LF_thigh_in'   actuator='LF_thigh'  user='12' /> 
+        <actuatorpos name='LF_tibia_in'   actuator='LF_tibia'  user='12' /> 
+        <actuatorpos name='RF_hip_in'     actuator='RF_hip'    user='12' /> 
+        <actuatorpos name='RF_thigh_in'   actuator='RF_thigh'  user='12' /> 
+        <actuatorpos name='RF_tibia_in'   actuator='RF_tibia'  user='12' /> 
+        <actuatorpos name='LB_hip_in'     actuator='LB_hip'    user='12' /> 
+        <actuatorpos name='LB_thigh_in'   actuator='LB_thigh'  user='12' /> 
+        <actuatorpos name='LB_tibia_in'   actuator='LB_tibia'  user='12' /> 
+        <actuatorpos name='RB_hip_in'     actuator='RB_hip'    user='12' /> 
+        <actuatorpos name='RB_thigh_in'   actuator='RB_thigh'  user='12' /> 
+        <actuatorpos name='RB_tibia_in'   actuator='RB_tibia'  user='12' /> 
+        
+        <framequat     name='torso-orientation' objtype='site' objname='imu'/>
+        <gyro          name='torso-angular-velocity'    site='imu' noise='5e-4' cutoff='34.9'/>
+        <accelerometer name='torso-linear-acceleration' site='imu' noise='1e-2' cutoff='157'/>
+        <magnetometer  name='torso-magnetometer'        site='imu'/>
+    </sensor>
+
+</mujoco>

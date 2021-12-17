@@ -1,0 +1,82 @@
+<mujoco model="WOLFIE">
+    <compiler angle="radian" />
+    <size njmax="500" nconmax="100" />
+    <asset>
+        <mesh name="TORSO" file="TORSO.STL" />
+        <mesh name="LF_hip" file="LF_hip.STL" />
+        <mesh name="LF_thigh" file="LF_thigh.STL" />
+        <mesh name="LF_tibia" file="LF_tibia.STL" />
+        <mesh name="RF_hip" file="RF_hip.STL" />
+        <mesh name="RF_thigh" file="RF_thigh.STL" />
+        <mesh name="RF_tibia" file="RF_tibia.STL" />
+        <mesh name="LB_hip" file="LB_hip.STL" />
+        <mesh name="LB_thigh" file="LB_thigh.STL" />
+        <mesh name="LB_tibia" file="LB_tibia.STL" />
+        <mesh name="RB_hip" file="RB_hip.STL" />
+        <mesh name="RB_thigh" file="RB_thigh.STL" />
+        <mesh name="RB_tibia" file="RB_tibia.STL" />
+    </asset>
+    <worldbody>
+        <geom type="mesh" rgba="0.4 0.4 0.4 1" mesh="TORSO" />
+        <body name="LF_hip" pos="0.1097 0.04497 -0.0016489" quat="0.490752 -0.509078 -0.490756 0.509078">
+            <inertial pos="-0.0117703 -1.87278e-05 0.000144832" quat="0.99995 0.00997599 -0.000222812 8.35547e-05" mass="0.235842" diaginertia="7.28685e-05 3.98751e-05 3.89065e-05" />
+            <joint name="LF_hip" pos="0 0 0" axis="0 0 -1" limited="true" range="-1.57 1.57" />
+            <geom type="mesh" rgba="0.4 0.4 0.4 1" mesh="LF_hip" />
+            <body name="LF_thigh" pos="0.04495 0 0" quat="0.499998 0.5 0.500002 0.5">
+                <inertial pos="0.0109124 0.000711115 -0.0154662" quat="-0.000178982 0.706485 -5.7639e-05 0.707728" mass="0.312295" diaginertia="0.00022394 0.000178216 5.1589e-05" />
+                <joint name="LF_thigh" pos="0 0 0" axis="0 0 1" limited="true" range="-1.57 1.57" />
+                <geom type="mesh" rgba="0.4 0.4 0.4 1" mesh="LF_thigh" />
+                <body name="LF_tibia" pos="0.1 0 0">
+                    <inertial pos="0.0452059 0.0007 0.000381359" quat="0 0.708048 0 0.706165" mass="0.0383078" diaginertia="2.14046e-05 2.06781e-05 1.43699e-06" />
+                    <joint name="LF_tibia" pos="0 0 0" axis="0 0 1" limited="true" range="-2.6 2.6" />
+                    <geom type="mesh" rgba="0.4 0.4 0.4 1" mesh="LF_tibia" />
+                </body>
+            </body>
+        </body>
+        <body name="RF_hip" pos="0.1097 -0.04497 0.0016489" quat="0.490752 -0.509078 0.490756 -0.509078">
+            <inertial pos="-0.0117703 1.87278e-05 -0.000144832" quat="0.99995 0.00997599 0.000222812 -8.35547e-05" mass="0.235842" diaginertia="7.28685e-05 3.98751e-05 3.89065e-05" />
+            <joint name="RF_hip" pos="0 0 0" axis="0 0 1" limited="true" range="-1.57 1.57" />
+            <geom type="mesh" rgba="0.4 0.4 0.4 1" mesh="RF_hip" />
+            <body name="RF_thigh" pos="0.04495 0 0" quat="0.499998 0.5 0.500002 0.5">
+                <inertial pos="0.0109124 -0.000688885 -0.0154662" quat="-0.000178982 0.706485 -5.7639e-05 0.707728" mass="0.312295" diaginertia="0.00022394 0.000178216 5.1589e-05" />
+                <joint name="RF_thigh" pos="0 0 0" axis="0 0 1" limited="true" range="-1.57 1.57" />
+                <geom type="mesh" rgba="0.4 0.4 0.4 1" mesh="RF_thigh" />
+                <body name="RF_tibia" pos="0.1 0 0">
+                    <inertial pos="0.0452059 -0.0007 0.000381359" quat="0 0.708048 0 0.706165" mass="0.0383078" diaginertia="2.14046e-05 2.06781e-05 1.43699e-06" />
+                    <joint name="RF_tibia" pos="0 0 0" axis="0 0 1" limited="true" range="-2.6 2.6" />
+                    <geom type="mesh" rgba="0.4 0.4 0.4 1" mesh="RF_tibia" />
+                </body>
+            </body>
+        </body>
+        <body name="LB_hip" pos="-0.11226 0.04497 -0.0016489" quat="0.490752 -0.509078 -0.490756 0.509078">
+            <inertial pos="-0.0117703 1.87278e-05 -0.00270034" quat="0.99995 0.00997599 0.000222812 -8.35547e-05" mass="0.235842" diaginertia="7.28685e-05 3.98751e-05 3.89065e-05" />
+            <joint name="LB_hip" pos="0 0 0" axis="0 0 1" limited="true" range="-1.57 1.57" />
+            <geom type="mesh" rgba="0.4 0.4 0.4 1" mesh="LB_hip" />
+            <body name="LB_thigh" pos="0.04495 0 4.4496e-05" quat="0.499998 0.5 0.500002 0.5">
+                <inertial pos="0.0109124 -0.00328889 -0.0154662" quat="-0.000178982 0.706485 -5.7639e-05 0.707728" mass="0.312295" diaginertia="0.00022394 0.000178216 5.1589e-05" />
+                <joint name="LB_thigh" pos="0 0 0" axis="0 0 1" limited="true" range="-1.57 1.57" />
+                <geom type="mesh" rgba="0.4 0.4 0.4 1" mesh="LB_thigh" />
+                <body name="LB_tibia" pos="0.1 0 0">
+                    <inertial pos="0.0452059 -0.0033 0.000381359" quat="0 0.708048 0 0.706165" mass="0.0383078" diaginertia="2.14046e-05 2.06781e-05 1.43699e-06" />
+                    <joint name="LB_tibia" pos="0 0 0" axis="0 0 1" limited="true" range="-2.6 2.6" />
+                    <geom type="mesh" rgba="0.4 0.4 0.4 1" mesh="LB_tibia" />
+                </body>
+            </body>
+        </body>
+        <body name="RB_hip" pos="-0.11226 -0.04497 0.0016489" quat="0.490752 -0.509078 0.490756 -0.509078">
+            <inertial pos="-0.0117703 1.87278e-05 -0.000144832" quat="0.99995 0.0099785 0.000224339 7.88313e-05" mass="0.235842" diaginertia="7.28685e-05 3.98751e-05 3.89065e-05" />
+            <joint name="RB_hip" pos="0 0 0" axis="0 0 -1" limited="true" range="-1.57 1.57" />
+            <geom type="mesh" rgba="0.4 0.4 0.4 1" mesh="RB_hip" />
+            <body name="RB_thigh" pos="0.04495 0 -4.4496e-05" quat="0.499998 0.5 0.500002 0.5">
+                <inertial pos="0.0109124 0.00331111 -0.0154662" quat="-0.000178982 0.706485 -5.7639e-05 0.707728" mass="0.312295" diaginertia="0.00022394 0.000178216 5.1589e-05" />
+                <joint name="RB_thigh" pos="0 0 0" axis="0 0 1" limited="true" range="-2 2" />
+                <geom type="mesh" rgba="0.4 0.4 0.4 1" mesh="RB_thigh" />
+                <body name="RB_tibia" pos="0.1 0 0">
+                    <inertial pos="0.0452059 0.0033 0.000381359" quat="0 0.708048 0 0.706165" mass="0.0383078" diaginertia="2.14046e-05 2.06781e-05 1.43699e-06" />
+                    <joint name="RB_tibia" pos="0 0 0" axis="0 0 1" limited="true" range="-2.6 2.6" />
+                    <geom type="mesh" rgba="0.4 0.4 0.4 1" mesh="RB_tibia" />
+                </body>
+            </body>
+        </body>
+    </worldbody>
+</mujoco>

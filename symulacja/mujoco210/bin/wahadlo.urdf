@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="whadlo">
+  
+  <material name="green">
+    <color rgba="0 1 0 1"/>
+  </material>
+  
+  <material name="red">
+    <color rgba="1 0 0 1"/>
+  </material>
+  
+  <material name="blue">
+    <color rgba="0 0 1 1"/>
+  </material>
+
+  <link name="korpus">
+    <visual>
+      <geometry>
+        <box size="0.35 0.6 0.15"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="green"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.35 0.6 0.15"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="24.489814"/>
+      <origin rpy="0 0 0" xyz="0.175 0.34674301 0.08202843"/>
+      <inertia ixx="0.74799408" ixy="0" ixz="0" iyy="0.31971488" iyz="-0.03386439" izz="0.97013512"/>
+    </inertial>
+  </link>
+  <link name="kolo_lewe">
+    <visual>
+      <geometry>
+        <cylinder radius="0.15" length="0.03"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="red"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.15" length="0.03"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="2.1800701"/>
+      <origin rpy="0 0 0" xyz="0 0.01520197 0"/>
+      <inertia ixx="0.01233948" ixy="0" ixz="0" iyy="0.02433941" iyz="0" izz="0.01233948"/>
+    </inertial>
+  </link>
+  <joint name="z_kolo_lewe" type="continuous">
+    <parent link="korpus"/>
+    <child link="kolo_lewe"/>
+    <origin xyz="0.192 0.3 0" rpy="0 -1.57 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+  <link name="kolo_prawe">
+    <visual>
+      <geometry>
+        <cylinder radius="0.15" length="0.03"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="red"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.15" length="0.03"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="2.1800701"/>
+      <origin rpy="0 0 0" xyz="0 0.01520197 0"/>
+      <inertia ixx="0.01233948" ixy="0" ixz="0" iyy="0.02433941" iyz="0" izz="0.01233948"/>
+    </inertial>
+  </link>
+  
+  <joint name="z_kolo_prawe" type="continuous">
+    <parent link="korpus"/>
+    <child link="kolo_prawe"/>
+    <origin xyz="-0.192 0.3 0" rpy="0 -1.57 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+</robot>

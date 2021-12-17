@@ -1,0 +1,49 @@
+{
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "C/C++: gcc.exe kompiluj aktywny plik",
+            "command": "C:\\MinGW\\bin\\gcc.exe",
+            "args": [
+                "-g",
+                "-Wall",
+                "${file}",
+                "-L${fileDirname}/mujoco210/bin",
+                "-lmujoco210",
+                "-lglfw3",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Zadanie wygenerowane przez debuger."
+        },
+        {
+            "label": "cmake",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceRoot}/build"
+            },
+            "command": "cmake --build .",
+        },
+        {
+            "label": "run",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceRoot}/build"
+            },
+            "command": "main.exe",
+            "dependsOn": "cmake"
+        },
+
+    ],
+    "version": "2.0.0"
+}

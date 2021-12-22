@@ -21,8 +21,6 @@ using namespace std;
 #define gravity_off  m->opt.disableflags |= mjDSBL_GRAVITY
 #define gravity_on  m->opt.disableflags &=~ mjDSBL_GRAVITY
 
-enum{LF_hip=0,LF_thigh,LF_tibia,RF_hip,RF_thigh,RF_tibia,LB_hip,LB_thigh,LB_tibia,RB_hip,RB_thigh,RB_tibia};
-
 // MuJoCo data structures
 mjModel* m = NULL;                  // MuJoCo model
 mjData* d = NULL;                   // MuJoCo data
@@ -51,7 +49,11 @@ char info_content_l[1000];
 char info_title_r[1000];
 char info_content_r[1000];
 
-motor actuators[12];
+float target_pos = 0.0;
+float new_target_pos = 0.0;
+float target_angle = 1.57;
+float I,elast,xpos_last;
+int i=0;
 
 
 // keyboard callback
@@ -74,6 +76,18 @@ void keyboard(GLFWwindow* window, int key, int scancode, int act, int mods)
         if(read_gravity != 0)gravity_off;
         else gravity_on;
     }
+    else if( act==GLFW_PRESS && key==GLFW_KEY_UP )
+    {
+        new_target_pos += -0.5;
+    }
+    else if( act==GLFW_PRESS && key==GLFW_KEY_DOWN )
+    {
+        new_target_pos += 0.5;
+    }
+    // else
+    // {
+    //     target_pos = 0.0;
+    // }
 }
 
 
@@ -137,19 +151,56 @@ void scroll(GLFWwindow* window, double xoffset, double yoffset)
 
 void mycontroller(const mjModel* m, mjData* d)
 {
-        // d->
-        // d->ctrl[0] = -2.5;
-        // d->ctrl[1] = -2.5;
 
         Quaternion<float> q((float)d->xquat[4], (float)d->xquat[5], (float)d->xquat[6],(float)d->xquat[7]);
-        auto euler = q.toRotationMatrix().eulerAngles(0, 1, 2);
+        auto euler = q.toRotationMatrix().eulerAngles(0,1,2);
 
-        strcpy(info_title_l, "roll [rad]\npitch [rad]\nyaw [rad]");
-        sprintf(info_content_l, "%.3f\n%.3f\n%.3f", euler(0), euler(1), euler(2));
+        Matrix4f transf;
+        transf << d->xmat[9],d->xmat[10],d->xmat[11],d->xpos[3],
+                 d->xmat[12],d->xmat[13],d->xmat[14],d->xpos[4],
+                 d->xmat[15],d->xmat[16],d->xmat[17],d->xpos[5],
+                          0,         0,         0,   1.0f;
 
-        float kp = 10.0f;
-        d->ctrl[0] = -kp*(euler(0)-1.57f);
-        d->ctrl[1] = kp*(euler(0)-1.57f);
+        Vector4f a;
+        a << euler(0), euler(1), euler(2), 1.0f;
+
+        Vector4f local;
+
+        local = transf * a;
+
+        
+        strcpy(info_title_l, "roll [rad]\npitch [rad]\nyaw [rad]\ntarget_pos\n actual pos");
+        // sprintf(info_content_l, "%.3f\n%.3f\n%.3f", local(0), local(1), local(2));
+        sprintf(info_content_l, "%.3f\n%.3f\n%.3f\n%.3f\n%.3f", euler(0)+3.14, euler(1), euler(2),target_pos,d->xpos[4]);
+
+
+       
+        if(i%5)
+        {
+            target_pos = 0.99f * target_pos + 0.01f * new_target_pos;
+
+            target_angle = (1.57f - 0.6f*(target_pos - d->xpos[4])) - 180.0f*(xpos_last - d->xpos[4]);
+            i=0;
+            xpos_last = d->xpos[4];
+        }
+
+        float kp = 4.5f;
+        float ki = 0.0f;
+
+        float e = euler(0)-target_angle;
+
+        I+= (e + elast)/2.0f;
+
+        float I_max = 1.0f;
+        if(I>I_max)I=I_max;
+        else if(I<-I_max)I=-I_max;
+
+        d->ctrl[0] = -kp*(e) + ki*(I);
+        d->ctrl[1] = kp*(e) + ki*(I);
+
+        elast = e;
+
+        i++;
 }
 
 

@@ -134,46 +134,22 @@ void scroll(GLFWwindow* window, double xoffset, double yoffset)
     mjv_moveCamera(m, mjMOUSE_ZOOM, 0, -0.05*yoffset, &scn, &cam);
 }
 
-void init_actuators()
-{
-    actuators[LF_hip].target_pos = 0.0f;
-    actuators[LF_thigh].target_pos = 2.0f;
-    actuators[LF_tibia].target_pos = -5.0f;
-
-    actuators[RF_hip].target_pos = 0.0f;
-    actuators[RF_thigh].target_pos = -2.0f;
-    actuators[RF_tibia].target_pos = 5.0f;
-
-    actuators[LB_hip].target_pos = 0.0f;
-    actuators[LB_thigh].target_pos = 2.0f;
-    actuators[LB_tibia].target_pos = -5.0f;
-
-    actuators[RB_hip].target_pos = 0.0f;
-    actuators[RB_thigh].target_pos = -2.0f;
-    actuators[RB_tibia].target_pos = 5.0f;
-
-    actuators[LF_hip].ks = 0.7f;
-    actuators[LF_thigh].ks = 0.5f;
-    actuators[LF_tibia].ks = 0.2f;
-
-    actuators[RF_hip].ks = 0.7f;
-    actuators[RF_thigh].ks = 0.5f;
-    actuators[RF_tibia].ks = 0.2f;
-
-    actuators[LB_hip].ks = 0.7f;
-    actuators[LB_thigh].ks = 0.5f;
-    actuators[LB_tibia].ks = 0.2f;
-
-    actuators[RB_hip].ks = 0.7f;
-    actuators[RB_thigh].ks = 0.5f;
-    actuators[RB_tibia].ks = 0.2f;
-}
 
 void mycontroller(const mjModel* m, mjData* d)
 {
-
+        // d->
         // d->ctrl[0] = -2.5;
         // d->ctrl[1] = -2.5;
+
+        Quaternion<float> q((float)d->xquat[4], (float)d->xquat[5], (float)d->xquat[6],(float)d->xquat[7]);
+        auto euler = q.toRotationMatrix().eulerAngles(0, 1, 2);
+
+        strcpy(info_title_l, "roll [rad]\npitch [rad]\nyaw [rad]");
+        sprintf(info_content_l, "%.3f\n%.3f\n%.3f", euler(0), euler(1), euler(2));
+
+        float kp = 10.0f;
+        d->ctrl[0] = -kp*(euler(0)-1.57f);
+        d->ctrl[1] = kp*(euler(0)-1.57f);
 }
 
 
@@ -184,8 +160,6 @@ int main(int argc, const char** argv)
     char error[1000] = "Could not load binary model";
     m = mj_loadXML("C:/Users/klonyyy/piotrek_moje/studia/Magisterka/Systemy_automatyzacji/projekt/sim/tttrochim/symulacja/model/wahadlo.xml", NULL, error, 1000);
     if( !m )mju_error_s("Load model error: %s", error);
-
-    init_actuators();
 
     // make data
     d = mj_makeData(m);
@@ -249,9 +223,6 @@ int main(int argc, const char** argv)
         // update scene and render
         mjv_updateScene(m, d, &opt, NULL, &cam, mjCAT_ALL, &scn);
         mjr_render(viewport, &scn, &con);
-
-        strcpy(info_title_l, "LF_hip [rad]\nLF_thigh [rad]\nLF_tibia [rad]");
-        sprintf(info_content_l, "%.3f\n%.3f\n%.3f", d->sensordata[0], d->sensordata[1], d->actuator_velocity[1]);
 
         strcpy(info_title_r, "gravity:");
         sprintf(info_content_r, "%d", !(m->opt.disableflags & (mjDSBL_GRAVITY)));

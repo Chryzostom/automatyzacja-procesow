@@ -736,34 +736,23 @@ char const* info_arch = "INFO" ":" "arch[" ARCHITECTURE_ID "]";
 
 #if !defined(__STDC__) && !defined(__clang__)
 # if defined(_MSC_VER) || defined(__ibmxl__) || defined(__IBMC__)
-#  define C_VERSION "90"
+#  define C_DIALECT "90"
 # else
-#  define C_VERSION
+#  define C_DIALECT
 # endif
 #elif __STDC_VERSION__ > 201710L
-# define C_VERSION "23"
+# define C_DIALECT "23"
 #elif __STDC_VERSION__ >= 201710L
-# define C_VERSION "17"
+# define C_DIALECT "17"
 #elif __STDC_VERSION__ >= 201000L
-# define C_VERSION "11"
+# define C_DIALECT "11"
 #elif __STDC_VERSION__ >= 199901L
-# define C_VERSION "99"
+# define C_DIALECT "99"
 #else
-# define C_VERSION "90"
+# define C_DIALECT "90"
 #endif
-const char* info_language_standard_default =
-  "INFO" ":" "standard_default[" C_VERSION "]";
-
-const char* info_language_extensions_default = "INFO" ":" "extensions_default["
-/* !defined(_MSC_VER) to exclude Clang's MSVC compatibility mode. */
-#if (defined(__clang__) || defined(__GNUC__) ||                               \
-     defined(__TI_COMPILER_VERSION__)) &&                                     \
-  !defined(__STRICT_ANSI__) && !defined(_MSC_VER)
-  "ON"
-#else
-  "OFF"
-#endif
-"]";
+const char* info_language_dialect_default =
+  "INFO" ":" "dialect_default[" C_DIALECT "]";
 
 /*--------------------------------------------------------------------------*/
 
@@ -795,8 +784,7 @@ int main(int argc, char* argv[])
 #if defined(__CRAYXT_COMPUTE_LINUX_TARGET)
   require += info_cray[argc];
 #endif
-  require += info_language_standard_default[argc];
-  require += info_language_extensions_default[argc];
+  require += info_language_dialect_default[argc];
   (void)argv;
   return require;
 }

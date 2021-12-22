@@ -39,11 +39,11 @@
 			[
 				{
 					"name" : "HELPSTRING",
-					"value" : "Choose the type of build, options are: None Debug Release RelWithDebInfo MinSizeRel ..."
+					"value" : "No help, variable specified on the command line."
 				}
 			],
 			"type" : "STRING",
-			"value" : ""
+			"value" : "Debug"
 		},
 		{
 			"name" : "CMAKE_CACHEFILE_DIR",
@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/Users/mateo/OneDrive/Desktop/projekt/symulacja/build"
+			"value" : "c:/Users/klonyyy/piotrek_moje/studia/Magisterka/Systemy_automatyzacji/projekt/sim/tttrochim/symulacja/build"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -79,7 +79,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "22"
+			"value" : "21"
 		},
 		{
 			"name" : "CMAKE_CACHE_PATCH_VERSION",
@@ -91,7 +91,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "1"
+			"value" : "4"
 		},
 		{
 			"name" : "CMAKE_COLOR_MAKEFILE",
@@ -159,7 +159,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "C:/MinGW/bin/g++.exe"
+			"value" : "C:/MinGW/bin/x86_64-w64-mingw32-g++.exe"
 		},
 		{
 			"name" : "CMAKE_CXX_COMPILER_AR",
@@ -175,7 +175,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/MinGW/bin/gcc-ar.exe"
+			"value" : "C:/MinGW/bin/x86_64-w64-mingw32-gcc-ar.exe"
 		},
 		{
 			"name" : "CMAKE_CXX_COMPILER_RANLIB",
@@ -191,7 +191,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/MinGW/bin/gcc-ranlib.exe"
+			"value" : "C:/MinGW/bin/x86_64-w64-mingw32-gcc-ranlib.exe"
 		},
 		{
 			"name" : "CMAKE_CXX_FLAGS",
@@ -303,7 +303,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "C:/MinGW/bin/gcc.exe"
+			"value" : "C:/MinGW/bin/x86_64-w64-mingw32-gcc.exe"
 		},
 		{
 			"name" : "CMAKE_C_COMPILER_AR",
@@ -319,7 +319,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/MinGW/bin/gcc-ar.exe"
+			"value" : "C:/MinGW/bin/x86_64-w64-mingw32-gcc-ar.exe"
 		},
 		{
 			"name" : "CMAKE_C_COMPILER_RANLIB",
@@ -335,7 +335,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/MinGW/bin/gcc-ranlib.exe"
+			"value" : "C:/MinGW/bin/x86_64-w64-mingw32-gcc-ranlib.exe"
 		},
 		{
 			"name" : "CMAKE_C_FLAGS",
@@ -558,16 +558,12 @@
 			"properties" : 
 			[
 				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
 					"name" : "HELPSTRING",
-					"value" : "Enable/Disable output of compile commands during generation."
+					"value" : "No help, variable specified on the command line."
 				}
 			],
 			"type" : "BOOL",
-			"value" : ""
+			"value" : "TRUE"
 		},
 		{
 			"name" : "CMAKE_EXTRA_GENERATOR",
@@ -651,7 +647,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Users/mateo/OneDrive/Desktop/projekt/symulacja"
+			"value" : "C:/Users/klonyyy/piotrek_moje/studia/Magisterka/Systemy_automatyzacji/projekt/sim/tttrochim/symulacja"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -915,7 +911,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/MinGW/bin/windres.exe"
+			"value" : "x86_64-w64-mingw32-windres"
 		},
 		{
 			"name" : "CMAKE_RC_COMPILER_WORKS",
@@ -1035,7 +1031,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/CMake/share/cmake-3.22"
+			"value" : "C:/CMake/share/cmake-3.21"
 		},
 		{
 			"name" : "CMAKE_SHARED_LINKER_FLAGS",
@@ -1271,7 +1267,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "C:/Users/mateo/OneDrive/Desktop/projekt/symulacja/mujoco210/include"
+			"value" : "C:/Users/klonyyy/piotrek_moje/studia/Magisterka/Systemy_automatyzacji/projekt/sim/tttrochim/symulacja/mujoco210/include"
 		},
 		{
 			"name" : "GLFW3_LIBRARY",
@@ -1283,7 +1279,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/Users/mateo/OneDrive/Desktop/projekt/symulacja/mujoco210/bin/glfw3.lib"
+			"value" : "C:/Users/klonyyy/piotrek_moje/studia/Magisterka/Systemy_automatyzacji/projekt/sim/tttrochim/symulacja/mujoco210/bin/glfw3.lib"
 		},
 		{
 			"name" : "MUJOCO_INCLUDE_DIR",
@@ -1295,7 +1291,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "C:/Users/mateo/OneDrive/Desktop/projekt/symulacja/mujoco210/include"
+			"value" : "C:/Users/klonyyy/piotrek_moje/studia/Magisterka/Systemy_automatyzacji/projekt/sim/tttrochim/symulacja/mujoco210/include"
 		},
 		{
 			"name" : "MUJOCO_LIBRARY",
@@ -1307,7 +1303,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/Users/mateo/OneDrive/Desktop/projekt/symulacja/mujoco210/bin/mujoco210.lib"
+			"value" : "C:/Users/klonyyy/piotrek_moje/studia/Magisterka/Systemy_automatyzacji/projekt/sim/tttrochim/symulacja/mujoco210/bin/mujoco210.lib"
 		},
 		{
 			"name" : "symulacja_BINARY_DIR",
@@ -1319,7 +1315,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/mateo/OneDrive/Desktop/projekt/symulacja/build"
+			"value" : "C:/Users/klonyyy/piotrek_moje/studia/Magisterka/Systemy_automatyzacji/projekt/sim/tttrochim/symulacja/build"
 		},
 		{
 			"name" : "symulacja_IS_TOP_LEVEL",
@@ -1343,7 +1339,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/mateo/OneDrive/Desktop/projekt/symulacja"
+			"value" : "C:/Users/klonyyy/piotrek_moje/studia/Magisterka/Systemy_automatyzacji/projekt/sim/tttrochim/symulacja"
 		}
 	],
 	"kind" : "cache",

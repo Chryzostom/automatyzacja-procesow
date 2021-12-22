@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "main::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-main-Debug-96def5f0bc5eeda4f52b.json",
+					"jsonFile" : "target-main-Debug-b13831f68dc948f32478.json",
 					"name" : "main",
 					"projectIndex" : 0
 				}
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/mateo/OneDrive/Desktop/projekt/symulacja/build",
-		"source" : "C:/Users/mateo/OneDrive/Desktop/projekt/symulacja"
+		"build" : "C:/Users/klonyyy/piotrek_moje/studia/Magisterka/Systemy_automatyzacji/projekt/sim/tttrochim/symulacja/build",
+		"source" : "C:/Users/klonyyy/piotrek_moje/studia/Magisterka/Systemy_automatyzacji/projekt/sim/tttrochim/symulacja"
 	},
 	"version" : 
 	{

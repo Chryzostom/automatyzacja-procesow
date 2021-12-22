@@ -735,7 +735,7 @@ char const* info_arch = "INFO" ":" "arch[" ARCHITECTURE_ID "]";
 #  define CXX_STD __cplusplus
 #endif
 
-const char* info_language_standard_default = "INFO" ":" "standard_default["
+const char* info_language_dialect_default = "INFO" ":" "dialect_default["
 #if CXX_STD > 202002L
   "23"
 #elif CXX_STD > 201703L
@@ -748,17 +748,6 @@ const char* info_language_standard_default = "INFO" ":" "standard_default["
   "11"
 #else
   "98"
-#endif
-"]";
-
-const char* info_language_extensions_default = "INFO" ":" "extensions_default["
-/* !defined(_MSC_VER) to exclude Clang's MSVC compatibility mode. */
-#if (defined(__clang__) || defined(__GNUC__) ||                               \
-     defined(__TI_COMPILER_VERSION__)) &&                                     \
-  !defined(__STRICT_ANSI__) && !defined(_MSC_VER)
-  "ON"
-#else
-  "OFF"
 #endif
 "]";
 
@@ -784,8 +773,7 @@ int main(int argc, char* argv[])
 #if defined(__CRAYXT_COMPUTE_LINUX_TARGET)
   require += info_cray[argc];
 #endif
-  require += info_language_standard_default[argc];
-  require += info_language_extensions_default[argc];
+  require += info_language_dialect_default[argc];
   (void)argv;
   return require;
 }

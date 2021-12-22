@@ -38,7 +38,7 @@
 						"mingwex"
 					]
 				},
-				"path" : "C:/MinGW/bin/gcc.exe",
+				"path" : "C:/MinGW/bin/x86_64-w64-mingw32-gcc.exe",
 				"version" : "9.2.0"
 			},
 			"language" : "C",
@@ -88,7 +88,7 @@
 						"mingwex"
 					]
 				},
-				"path" : "C:/MinGW/bin/g++.exe",
+				"path" : "C:/MinGW/bin/x86_64-w64-mingw32-g++.exe",
 				"version" : "9.2.0"
 			},
 			"language" : "CXX",
@@ -111,7 +111,7 @@
 			"compiler" : 
 			{
 				"implicit" : {},
-				"path" : "C:/MinGW/bin/windres.exe"
+				"path" : "x86_64-w64-mingw32-windres"
 			},
 			"language" : "RC",
 			"sourceFileExtensions" : 

@@ -171,11 +171,9 @@ void init_actuators()
 
 void mycontroller(const mjModel* m, mjData* d)
 {
-    for(int i=0;i<12;i++)
-    {
-        actuators[i].kd = 0.005f;
-        d->ctrl[i] = actuators[i].ks*(actuators[i].target_pos - d->sensordata[i]) - actuators[i].kd*(d->actuator_velocity[i]);// + actuators[i].t_ff;
-    }
+
+        // d->ctrl[0] = -2.5;
+        // d->ctrl[1] = -2.5;
 }
 
 
@@ -184,7 +182,7 @@ int main(int argc, const char** argv)
 {
     //load and compile model
     char error[1000] = "Could not load binary model";
-    m = mj_loadXML("C:/Users/mateo/OneDrive/Desktop/projekt/symulacja/model/WOLFIE.xml", NULL, error, 1000);
+    m = mj_loadXML("C:/Users/klonyyy/piotrek_moje/studia/Magisterka/Systemy_automatyzacji/projekt/sim/tttrochim/symulacja/model/wahadlo.xml", NULL, error, 1000);
     if( !m )mju_error_s("Load model error: %s", error);
 
     init_actuators();

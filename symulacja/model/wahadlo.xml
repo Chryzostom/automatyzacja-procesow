@@ -1,0 +1,46 @@
+<mujoco model="whadlo">
+    <compiler inertiafromgeom='auto' angle='radian' eulerseq='zyx' meshdir='wolfie-stl-meshes'/>
+    <size njmax="500" nconmax="100" />
+
+    <visual>
+        <rgba haze="0.15 0.25 0.35 1"/>
+        <quality shadowsize="2048"/>
+        <map stiffness="700" shadowscale="0.5" fogstart="10" fogend="15" zfar="40" haze="0.3"/>
+    </visual>
+
+    <asset>
+        <texture name="texplane" type="2d" builtin="checker" rgb1=".2 .3 .4" rgb2=".1 0.15 0.2"
+            width="512" height="512" mark="cross" markrgb=".8 .8 .8"/>
+        <material name="matplane" reflectance="0.3" texture="texplane" texrepeat="1 1" texuniform="true"/>
+    </asset>
+
+    <worldbody>
+        <light directional="true" diffuse=".4 .4 .4" specular="0.1 0.1 0.1" pos="0 0 5.0" dir="0 0 -1" castshadow="false"/>
+        <light directional="true" diffuse=".6 .6 .6" specular="0.2 0.2 0.2" pos="0 0 4" dir="0 0 -1"/>
+        <!-- collision for the floor: affinity = 0001 1111 co that it can collide with all robot parts  -->
+        <geom name="ground" type="plane" size="0 0 1" pos="0 0 -0.3" quat="1 0 0 0" material="matplane" condim="3" conaffinity="31"/>
+        <body name="tors" pos="0.0 0.0 2.0" quat="-0.705 0.707 0 0">
+            <geom size="0.175 0.3 0.075" type="box" rgba="0 1 0 1" />
+            <joint type='slide' axis='1 0 0' limited='false'/>
+            <joint type='slide' axis='0 1 0' limited='false'/>
+            <joint type='slide' axis='0 0 1' limited='false' ref='1.01'/>
+            <joint type='ball' limited='false'/>
+            <body name="kolo_lewe" pos="0.192 0.3 0" quat="0.707388 0 0.706825 0">
+                <inertial pos="0 0.015202 0" quat="0.707107 0 0 0.707107" mass="2.18007" diaginertia="0.0243394 0.0123395 0.0123395" />
+                <joint name="z_kolo_lewe" pos="0 0 0" axis="0 0 1" limited = "false" damping='0.01' armature='0.01225'/>
+                <geom size="0.15 0.015" type="cylinder" rgba="1 0 0 1" />
+            </body>
+            <body name="kolo_prawe" pos="-0.192 0.3 0" quat="0.707388 0 -0.706825 0">
+                <inertial pos="0 0.015202 0" quat="0.707107 0 0 0.707107" mass="2.18007" diaginertia="0.0243394 0.0123395 0.0123395" />
+                <joint name="z_kolo_prawe" pos="0 0 0" axis="0 0 1" limited = "false" damping='0.01' armature='0.01225'/>
+                <geom size="0.15 0.015" type="cylinder" rgba="1 0 0 1" />
+            </body>
+        </body>
+    </worldbody>
+    <actuator>
+        <!-- User parameter is the maximum no-load motor RPM -->                                                                                 
+        <motor name='silnik_prawy'     joint='z_kolo_prawe'    gear='4.5' ctrllimited='true' ctrlrange='-3.0 3.0' forcelimited='true' forcerange='-3.0 3.0'/>
+        <motor name='silnik_lewy'   joint='z_kolo_lewe'  gear='4.5' ctrllimited='true' ctrlrange='-3.0 3.0' forcelimited='true' forcerange='-3.0 3.0'/>
+
+    </actuator>
+</mujoco>

@@ -171,7 +171,7 @@ void mycontroller(const mjModel* m, mjData* d)
         
         strcpy(info_title_l, "roll [rad]\npitch [rad]\nyaw [rad]\ntarget_pos\n actual pos");
         // sprintf(info_content_l, "%.3f\n%.3f\n%.3f", local(0), local(1), local(2));
-        sprintf(info_content_l, "%.3f\n%.3f\n%.3f\n%.3f\n%.3f", euler(0)+3.14, euler(1), euler(2),target_pos,d->xpos[4]);
+        sprintf(info_content_l, "%.3f\n%.3f\n%.3f\n%.3f\n%.3f", euler(0), euler(1), euler(2),target_pos,d->xpos[4]);
 
 
        
@@ -209,7 +209,13 @@ int main(int argc, const char** argv)
 {
     //load and compile model
     char error[1000] = "Could not load binary model";
-    m = mj_loadXML("C:/Users/klonyyy/piotrek_moje/studia/Magisterka/Systemy_automatyzacji/projekt/sim/tttrochim/symulacja/model/wahadlo.xml", NULL, error, 1000);
+
+    //////PLIK U PIOTERA//////////////////
+    //m = mj_loadXML("C:/Users/klonyyy/piotrek_moje/studia/Magisterka/Systemy_automatyzacji/projekt/sim/tttrochim/symulacja/model/wahadlo.xml", NULL, error, 1000);
+
+    //////PLIK U MATIEGO//////////////////
+    m = mj_loadXML("C:/Users/mateo/OneDrive/Desktop/ttrochim/symulacja/model/wahadlo.xml", NULL, error, 1000);
+
     if( !m )mju_error_s("Load model error: %s", error);
 
     // make data

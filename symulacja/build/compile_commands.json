@@ -1,7 +1,7 @@
 [
 {
-  "directory": "C:/Users/klonyyy/piotrek_moje/studia/Magisterka/Systemy_automatyzacji/projekt/sim/tttrochim/symulacja/build",
-  "command": "C:/MinGW/bin/x86_64-w64-mingw32-g++.exe -DHAVE_LIBGLFW3=1 -DHAVE_LIBMUJOCO=1 @CMakeFiles/main.dir/includes_CXX.rsp -g -o CMakeFiles/main.dir/main.cpp.obj -c C:/Users/klonyyy/piotrek_moje/studia/Magisterka/Systemy_automatyzacji/projekt/sim/tttrochim/symulacja/main.cpp",
-  "file": "C:/Users/klonyyy/piotrek_moje/studia/Magisterka/Systemy_automatyzacji/projekt/sim/tttrochim/symulacja/main.cpp"
+  "directory": "C:/Users/mateo/OneDrive/Desktop/ttrochim/symulacja/build",
+  "command": "C:/MinGW/bin/x86_64-w64-mingw32-g++.exe -DHAVE_LIBGLFW3=1 -DHAVE_LIBMUJOCO=1 @CMakeFiles/main.dir/includes_CXX.rsp -g -o CMakeFiles/main.dir/main.cpp.obj -c C:/Users/mateo/OneDrive/Desktop/ttrochim/symulacja/main.cpp",
+  "file": "C:/Users/mateo/OneDrive/Desktop/ttrochim/symulacja/main.cpp"
 }
 ]

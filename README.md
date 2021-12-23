@@ -1,2 +1,2 @@
-# tttrochim
-hejka
+# Projekt automatyzacja procesów
+hejka projekcik

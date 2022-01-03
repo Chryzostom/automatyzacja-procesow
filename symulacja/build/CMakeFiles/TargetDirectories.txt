@@ -1,3 +1,3 @@
-C:/Users/mateo/OneDrive/Desktop/ttrochim/symulacja/build/CMakeFiles/main.dir
-C:/Users/mateo/OneDrive/Desktop/ttrochim/symulacja/build/CMakeFiles/edit_cache.dir
-C:/Users/mateo/OneDrive/Desktop/ttrochim/symulacja/build/CMakeFiles/rebuild_cache.dir
+C:/Users/klonyyy/piotrek_moje/studia/Magisterka/Systemy_automatyzacji/projekt/sim/tttrochim/symulacja/build/CMakeFiles/edit_cache.dir
+C:/Users/klonyyy/piotrek_moje/studia/Magisterka/Systemy_automatyzacji/projekt/sim/tttrochim/symulacja/build/CMakeFiles/main.dir
+C:/Users/klonyyy/piotrek_moje/studia/Magisterka/Systemy_automatyzacji/projekt/sim/tttrochim/symulacja/build/CMakeFiles/rebuild_cache.dir

@@ -1,8 +1,26 @@
-Thu Dec 23 10:36:52 2021
+Wed Dec 29 20:30:15 2021
 ERROR: Load model error: XML parse error at line 0, column 0:
 Failed to open file
 
 
-Thu Dec 23 10:39:00 2021
-WARNING: Nan, Inf or huge value in QACC at DOF 0. The simulation is unstable. Time = 98.8360.
+Wed Dec 29 20:42:21 2021
+WARNING: Nan, Inf or huge value in QACC at DOF 0. The simulation is unstable. Time = 3.8520.
+
+Wed Dec 29 20:44:14 2021
+WARNING: Nan, Inf or huge value in QACC at DOF 0. The simulation is unstable. Time = 9.6980.
+
+Wed Dec 29 20:51:49 2021
+WARNING: Nan, Inf or huge value in QACC at DOF 2. The simulation is unstable. Time = 2.4340.
+
+Wed Dec 29 20:53:48 2021
+WARNING: Nan, Inf or huge value in QACC at DOF 4. The simulation is unstable. Time = 54.3360.
+
+Wed Dec 29 20:56:44 2021
+WARNING: Nan, Inf or huge value in QACC at DOF 3. The simulation is unstable. Time = 78.4040.
+
+Wed Dec 29 20:59:24 2021
+WARNING: Nan, Inf or huge value in QACC at DOF 0. The simulation is unstable. Time = 44.9540.
+
+Wed Dec 29 21:06:46 2021
+WARNING: Nan, Inf or huge value in QACC at DOF 0. The simulation is unstable. Time = 7.9380.
 
